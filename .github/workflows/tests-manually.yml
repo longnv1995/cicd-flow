@@ -3,28 +3,28 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Environment to run the tests'
+        description: Environment to run the tests
         required: true
-        default: 'develop'
+        default: develop
         type: choice
         options:
           - develop
           - staging
           - production
       test_site:
-        description: 'Site URL'
+        description: Site URL
         required: true
         default: 'https://longnv1995.github.io/demo-site/'
         type: string
       test_branch:
-        description: 'Test branch'
+        description: Test branch
         required: true
         default: main
         type: string
       test_type:
-        description: 'Test type'
+        description: Test type
         required: true
-        default: 'regression'
+        default: regression
         type: choice
         options:
           - smoke
@@ -40,7 +40,7 @@ jobs:
       - name: Checkout the reposistory
         uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.test_branch }}
+          ref: '${{ inputs.test_branch }}'
       - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
@@ -52,7 +52,7 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
+        if: '${{ !cancelled() }}'
         with:
           name: playwright-report
           path: playwright-report/
