@@ -2,7 +2,7 @@ name: Playwright Tests
 on:
   workflow_dispatch:
     inputs:
-      environment:
+      test_env:
         description: Environment to run the tests
         required: true
         default: develop
@@ -50,7 +50,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npx playwright test
+        run: ENV=${{ inputs.test_env }} npx playwright test --grep '@${{ inputs.test_type }}'
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         if: '${{ !cancelled() }}'
         with:
