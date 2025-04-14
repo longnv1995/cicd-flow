@@ -52,9 +52,9 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: |
-          if [[ "${{ inputs.test_type }}" == "regression" ]]; then
+          if: ${{ input.test_type }} == "regression"
             ENV=${{ inputs.test_env }} npx playwright test
-          else
+          if: ${{ input.test_type }} != "regression"
             ENV=${{ inputs.test_env }} npx playwright test --grep "@${{ inputs.test_type }}"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
