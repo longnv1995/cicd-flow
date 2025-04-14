@@ -12,10 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "The PR was merged"
-      - name: Checkout to branch ${{ inputs.test_branch }}
+      - name: Checkout source code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.test_branch }}
       - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
