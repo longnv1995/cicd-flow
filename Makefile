@@ -17,4 +17,7 @@ regression-test:
 	ENV=${ENV} npx playwright test
 
 test:
-	ENV=${ENV} TEST_TYPE=${TEST_TYPE} npx playwright test
+	ifeq (${TEST_TYPE}, "regression")
+		ENV=${ENV} npx playwright test
+	else
+		ENV=${ENV} npx playwright test --grep "${TEST_TYPE}"
