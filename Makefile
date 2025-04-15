@@ -20,5 +20,5 @@ test:
 ifeq ($(TEST_TYPE), regression)
 	ENV=$(ENV) npx playwright test
 else
-	ENV=$(ENV) npx playwright test --grep "$(TEST_TYPE)"
+	ENV=$(ENV) npx playwright test --grep "@$(TEST_TYPE)"
 endif

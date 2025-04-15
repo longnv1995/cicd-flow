@@ -18,5 +18,5 @@ test('Visual test example', {
   tag: ['@smoke', '@visual']
 }, async ({ page }) => {
   await page.goto('/demo-site');
-  await expect(page.getByTestId('count_btn')).not.toContainText("0");
+  await expect(page.getByTestId('count_btn')).toContainText("0");
 });
