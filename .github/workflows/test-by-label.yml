@@ -1,8 +1,5 @@
 name: Run e2e tests by label
-on:
-  repository_dispatch:
-    types:
-      - ui-test
+on: [repository_dispatch]
 jobs:
   test-by-label:
     runs-on: ubuntu-latest
@@ -31,7 +28,7 @@ jobs:
         run: npx playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
       - name: Run e2e tests by label
-        run: make ui-test
+        run: TEST_TYPE=${{ github.event.action }} make test
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         if: '${{ !cancelled() }}'
