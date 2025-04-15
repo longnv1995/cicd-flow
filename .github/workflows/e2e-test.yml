@@ -7,11 +7,10 @@ jobs:
   smoke-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout web reposistory
+      - name: Checkout reposistory
         uses: actions/checkout@v4
         with:
-          repository: 'longnv1995/demo-site'
-          ref: ${{ github.event.client_payload.branch }}
+          ref: main
       - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
