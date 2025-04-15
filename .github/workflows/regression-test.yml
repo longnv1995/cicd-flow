@@ -1,13 +1,14 @@
-name: Run Smoke Test
+name: Regression tests
 on:
-  repository_dispatch:
-    types:
-      - run-e2e-test
+  schedule:
+    - cron: '30 13 * * *'
+  workflow_dispatch: {}
 jobs:
-  smoke-test:
+  regression-test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout reposistory
+      - name: Checkout source code
         uses: actions/checkout@v4
         with:
           ref: main
@@ -30,8 +31,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-      - name: Run smoke tests
-        run: make smoke-test
+      - name: Run regression tests in prodtest environment
+        run: make regression-test
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         if: '${{ !cancelled() }}'

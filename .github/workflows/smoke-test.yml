@@ -1,19 +1,16 @@
-name: Smoke tests after merging PR
+name: Smoke tests after PR merged
 on:
-  pull_request_target:
+  repository_dispatch:
     types:
-      - closed
-    branches:
-      - main
+      - run-e2e-test
 jobs:
-  run_test_if_pr_merged:
-    if: github.event.pull_request.merged == true
-    timeout-minutes: 60
+  smoke-test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "The PR was merged"
-      - name: Checkout source code
+      - name: Checkout reposistory
         uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
@@ -33,7 +30,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-      - name: Run Playwright smoke tests
+      - name: Run smoke tests in prodtest environment
         run: make smoke-test
       - name: Upload artifact
         uses: actions/upload-artifact@v4
