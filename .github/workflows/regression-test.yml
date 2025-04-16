@@ -4,7 +4,8 @@ on:
     - cron: '30 13 * * *'
   workflow_dispatch: {}
 jobs:
-  regression-test:
+  e2e-test:
+    name: Regression tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
