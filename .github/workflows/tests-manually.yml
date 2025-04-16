@@ -5,7 +5,7 @@ on:
       test_env:
         description: Environment to run the tests
         required: true
-        default: develop
+        default: staging
         type: choice
         options:
           - develop

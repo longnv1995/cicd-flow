@@ -5,7 +5,7 @@ pretext: Triggered via {{eventName}} by {{actor}}
 title_link: https://support.github.com
 
 text: |
-  *<{{workflowRunUrl}}|Workflow _{{workflow}}_ job _{{jobName}}_ triggered by _{{eventName}}_ is _{{jobStatus}}_>* for <{{refUrl}}|`{{ref}}`>
+  *<{{workflowRunUrl}}|{{icon jobStatus}}_ {{jobName}}_ triggered by _{{eventName}}_>* for <{{refUrl}}|`{{ref}}`>
   {{#if description}}<{{diffUrl}}|`{{diffRef}}`> - {{description}}{{/if}}
   {{#if payload.commits}}
   *Commits*
