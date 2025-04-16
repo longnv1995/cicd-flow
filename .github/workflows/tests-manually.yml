@@ -32,6 +32,15 @@ on:
           - ui
           - api
           - visual
+      notify_slack:
+        description: Notify slack channel/user
+        default: '#regression-tests-prodtest'
+        required: false
+        type: string
+      notify_me:
+        description: Notify me in slack
+        type: boolean
+        default: false
 jobs:
   test:
     timeout-minutes: 60
@@ -70,3 +79,9 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - name: Notify Slack
+        if: always()
+        uses: act10ns/slack@v2
+        with:
+          status: ${{ job.status }}
+          channel: ${{ inputs.notify_slack }}
