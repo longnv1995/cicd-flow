@@ -32,6 +32,11 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - name: Start running regression test
+        uses: act10ns/slack@v2
+        with:
+          status: starting
+          message: Start running regression test
       - name: Run regression tests in prodtest environment
         run: make regression-test
       - name: Upload artifact
@@ -41,16 +46,11 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-  # send-slack-notification:
-  #   name: Send slack notification
-  #   needs: e2e-test
-  #   runs-on: ubuntu-latest
-  #   steps:
       - name: Send slack notification
         uses: act10ns/slack@v2
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
           status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
+          message: Regression test results
         if: always()
