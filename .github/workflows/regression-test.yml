@@ -41,3 +41,15 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+  # send-slack-notification:
+  #   name: Send slack notification
+  #   needs: e2e-test
+  #   runs-on: ubuntu-latest
+  #   steps:
+      - name: Send slack notification
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: always()
