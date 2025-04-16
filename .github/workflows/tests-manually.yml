@@ -45,6 +45,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - run: echo "${{ github.reposistory }}"
       - name: Checkout to branch ${{ inputs.test_branch }}
