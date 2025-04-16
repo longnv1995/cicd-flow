@@ -33,12 +33,12 @@ on:
           - api
           - visual
       notify_slack:
-        description: Notify slack channel/user
+        description: Notify slack channels
         default: '#regression-tests-prodtest'
         required: false
         type: string
-      notify_me:
-        description: Notify me in slack
+      notify_user:
+        description: Notify slack users
         type: boolean
         default: false
 jobs:
@@ -86,4 +86,4 @@ jobs:
         uses: act10ns/slack@v2
         with:
           status: ${{ job.status }}
-          channel: ${{ inputs.notify_slack }}
+          channel: '${{ inputs.notify_slack }}'
