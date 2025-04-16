@@ -38,7 +38,7 @@ fields:
     value: "{{actor}}"
     short: true
   - title: Job Status
-    value: "{{jobStatus}}"
+    value: "{{ icon jobStatus}}"
     short: true
 
 footer: >-
