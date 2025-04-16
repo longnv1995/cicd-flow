@@ -37,6 +37,10 @@ on:
         default: '#regression-tests-prodtest'
         required: false
         type: string
+      notify_user:
+        description: Notify slack users
+        type: boolean
+        default: false
 jobs:
   test:
     timeout-minutes: 60
@@ -82,7 +86,3 @@ jobs:
         uses: act10ns/slack@v2
         with:
           status: ${{ job.status }}
-        run: |
-          curl -d '{"channel": "${{ inputs.notify_slack }}", "username": "Github Action", "text": "Test", "icon_emoji": ":ghost:"}' \
-            ${SLACK_WEBHOOK_URL}
-          
