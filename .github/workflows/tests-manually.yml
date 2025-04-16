@@ -85,5 +85,5 @@ jobs:
         if: always()
         uses: act10ns/slack@v2
         with:
-          status: ${{ icon jobStatus }}
+          status: ${{ job.status }}
           config: .github/config/slack.yml
