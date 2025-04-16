@@ -83,6 +83,6 @@ jobs:
         with:
           status: ${{ job.status }}
         run: |
-          curl -X POST ${SLACK_WEBHOOK_URL} \
-            --data '{"channel": "${{ inputs.notify_slack }}", "username": "Github Action", "text": "Test", "icon_emoji": ":ghost:"}'
+          curl -d '{"channel": "${{ inputs.notify_slack }}", "username": "Github Action", "text": "Test", "icon_emoji": ":ghost:"}' \
+            ${SLACK_WEBHOOK_URL}
           
