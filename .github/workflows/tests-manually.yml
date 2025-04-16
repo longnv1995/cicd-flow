@@ -85,4 +85,4 @@ jobs:
         if: always()
         uses: act10ns/slack@v2
         with:
-          status: ${{ icons job.status }}
+          status: ${{ icon job.status }}
