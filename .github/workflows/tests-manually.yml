@@ -51,6 +51,7 @@ jobs:
       - name: Run e2e test with parameters
         uses: act10ns/slack@v2
         with:
+          status: ${{ job.status }}
           config: .github/config/e2e-job-params.yml
       - run: echo "${{ github.reposistory }}"
       - name: Checkout to branch ${{ inputs.test_branch }}
