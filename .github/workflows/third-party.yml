@@ -1,0 +1,33 @@
+name: Version checker
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '* 5 * * 1-5'
+name: Version checker
+jobs:
+  check-playwright-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check playwright version
+        run: curl -s GET https://api.github.com/repos/microsoft/playwright/tags\?per_page\=1 | jq -r '.[].name' > playwright-version.txt
+      - name: Save Version as Variable
+        id: version_variable
+        run: echo "VERSION=$(cat playwright-version.txt)" >> $GITHUB_ENV
+     
+      - name: Cache playwright version number
+        uses: actions/cache@v3
+        id: playwright-version
+        with:
+          path: |
+            ./playwright-version.txt
+          key: playwright-${{ env.VERSION }}
+
+      - name: Notify if version has changed
+        if: steps.playwright-version.outputs.cache-hit != 'true'
+        uses: 8398a7/action-slack@v3
+        with:
+          text: 'A new version of Playwright has been released! https://github.com/microsoft/playwright/releases/tag/${{ env.VERSION }}'
+          status: ${{ job.status }}
+          fields: workflow
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
