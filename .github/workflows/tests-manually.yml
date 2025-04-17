@@ -87,3 +87,5 @@ jobs:
         with:
           status: ${{ job.status }}
           config: .github/config/slack.yml
+          message: Run e2e test with parameters
+          inputs: ${{ toJson(inputs) }}
