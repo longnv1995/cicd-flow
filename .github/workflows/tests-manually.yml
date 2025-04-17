@@ -48,9 +48,9 @@ jobs:
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
-      - name: Run e2e test with parameters
-        uses: 8398a7/action-slack@v3
+      - uses: 8398a7/action-slack@v3
         with:
+          fields: all
           status: custom
           custom_payload: |
             {
