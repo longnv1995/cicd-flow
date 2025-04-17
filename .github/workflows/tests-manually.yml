@@ -49,10 +49,44 @@ jobs:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - name: Run e2e test with parameters
-        uses: act10ns/slack@v2
+        uses: 8398a7/action-slack@v3
         with:
+          icon_emoji: ':octocat:'
           status: ${{ job.status }}
-          config: .github/config/e2e-job-params.yml
+          mention: 'here'
+          if_mention: always
+      - name: Example
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          custom_payload: |
+            {
+              text: "Custom Field Check",
+              attachments: [{
+                "author_name": "8398a7@action-slack", // json
+                fallback: 'fallback',
+                color: 'good',
+                title: 'CI Result',
+                text: 'Succeeded',
+                fields: [{
+                  title: 'lower case',
+                  value: 'LOWER CASE CHECK'.toLowerCase(),
+                  short: true
+                },
+                {
+                  title: 'reverse',
+                  value: 'gnirts esrever'.split('').reverse().join(''),
+                  short: true
+                },
+                {
+                  title: 'long title1',
+                  value: 'long value1',
+                  short: false
+                }],
+                actions: [{
+                }]
+              }]
+            }
       - run: echo "${{ github.reposistory }}"
       - name: Checkout to branch ${{ inputs.test_branch }}
         uses: actions/checkout@v4
@@ -88,7 +122,6 @@ jobs:
           retention-days: 30
       - name: Notify Slack
         if: always()
-        uses: act10ns/slack@v2
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          config: .github/config/slack.yml
