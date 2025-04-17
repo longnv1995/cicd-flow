@@ -51,10 +51,7 @@ jobs:
       - name: Run e2e test with parameters
         uses: 8398a7/action-slack@v3
         with:
-          icon_emoji: ':octocat:'
           status: ${{ job.status }}
-          mention: 'here'
-          if_mention: always
       - name: Example
         uses: 8398a7/action-slack@v3
         with:
@@ -63,7 +60,6 @@ jobs:
             {
               text: "Custom Field Check",
               attachments: [{
-                # "author_name": "8398a7@action-slack", // json
                 fallback: 'fallback',
                 color: 'good',
                 title: 'Run e2e test with parameters',
