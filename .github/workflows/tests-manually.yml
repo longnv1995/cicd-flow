@@ -58,7 +58,7 @@ jobs:
             {
               text: "Running e2e test with parameters triggered by ${{ github.actor }}",
               attachments: [{
-                author: 'Github Action Bot'
+                author: 'Github Action Bot',
                 color: 'good',
                 fields: [{
                   title: 'Test environment',
