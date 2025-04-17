@@ -1,0 +1,19 @@
+username: GitHub-CI
+fields:
+  - title: Run e2e test with parameters
+  - title: Environment to run the tests
+    value: "<{{workflowUrl}}|{{workflow}}>"
+    short: true
+  - title: Site URL
+    value: "{{ref}} ({{refType}})"
+    short: true
+  - title: Test branch
+    value: |-
+      <{{workflowRunUrl}}|{{runId}}>
+    short: true
+  - title: Test type
+    value: "{{runNumber}}"
+    short: true
+  - title: Notify slack channels
+    value: "{{actor}}"
+    short: true
