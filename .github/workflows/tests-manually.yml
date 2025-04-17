@@ -45,13 +45,14 @@ jobs:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - name: Trigger e2e test by ${{ github.actor }}
-      - uses: 8398a7/action-slack@v3
+        uses: 8398a7/action-slack@v3
         with:
           fields: all
           status: custom
           custom_payload: |
             {
               text: "Running e2e test with parameters...",
+              "author_name": "Github Action Bot"
               color: 'good'
               attachments: [{
                 fields: [{
