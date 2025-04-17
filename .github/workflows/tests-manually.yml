@@ -141,6 +141,8 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,eventName,ref,workflow,job,took
+      - name: Send test report link
+        uses: 8398a7/action-slack@v3
         with:
           status: custom
           custom_payload: |
