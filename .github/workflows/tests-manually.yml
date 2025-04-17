@@ -37,6 +37,10 @@ on:
         default: '#regression-tests-prodtest'
         required: true
         type: string
+      notify_users:
+        description: Notify slack users, eg: userId1,userId2
+        required: false
+        type: string
 jobs:
   test:
     timeout-minutes: 60
@@ -48,12 +52,12 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           fields: all
+          mention: '${{ inputs.notify_users }}'
           status: custom
           custom_payload: |
             {
-              title: "Running e2e test with parameters...",
+              text: "Running e2e test with parameters triggered by ${{ github.actor }}",
               attachments: [{
-                "author_name": "Github Action Bot",
                 color: 'good',
                 fields: [{
                   title: 'Test environment',
@@ -78,6 +82,11 @@ jobs:
                 {
                   title: 'Notify slack channels',
                   value: '${{ inputs.notify_slack }}',
+                  short: false
+                },
+                {
+                  title: 'Notify slack users',
+                  value: '${{ inputs.notify_users }}',
                   short: false
                 }],
                 actions: [{
