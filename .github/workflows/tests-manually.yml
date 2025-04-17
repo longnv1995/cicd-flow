@@ -33,14 +33,10 @@ on:
           - api
           - visual
       notify_slack:
-        description: Notify slack channels
+        description: Notify slack channel
         default: '#regression-tests-prodtest'
-        required: false
+        required: true
         type: string
-      notify_user:
-        description: Notify slack users
-        type: boolean
-        default: false
 jobs:
   test:
     timeout-minutes: 60
@@ -54,14 +50,10 @@ jobs:
           status: custom
           custom_payload: |
             {
-              text: "Custom Field Check",
+              text: "Run e2e test with parameters",
               attachments: [{
-                fallback: 'fallback',
-                color: 'good',
-                title: 'Run e2e test with parameters',
-                text: 'Succeeded',
                 fields: [{
-                  title: 'Environment to run the tests',
+                  title: 'Test environment',
                   value: '${{ inputs.test_env }}',
                   short: true
                 },
