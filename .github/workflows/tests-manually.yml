@@ -51,10 +51,10 @@ jobs:
           status: custom
           custom_payload: |
             {
-              text: "Running e2e test with parameters...",
-              "author_name": "Github Action Bot"
-              color: 'good'
+              title: "Running e2e test with parameters...",
               attachments: [{
+                "author_name": "Github Action Bot",
+                color: 'good',
                 fields: [{
                   title: 'Test environment',
                   value: '${{ inputs.test_env }}',
