@@ -38,7 +38,7 @@ on:
         required: true
         type: string
       notify_users:
-        description: Notify slack users, eg: userId1,userId2
+        description: Notify slack users, eg\:/ userId1,userId2
         required: false
         type: string
 jobs:
