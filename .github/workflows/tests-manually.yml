@@ -63,24 +63,34 @@ jobs:
             {
               text: "Custom Field Check",
               attachments: [{
-                "author_name": "8398a7@action-slack", // json
+                # "author_name": "8398a7@action-slack", // json
                 fallback: 'fallback',
                 color: 'good',
-                title: 'CI Result',
+                title: 'Run e2e test with parameters',
                 text: 'Succeeded',
                 fields: [{
-                  title: 'lower case',
-                  value: 'LOWER CASE CHECK'.toLowerCase(),
+                  title: 'Environment to run the tests',
+                  value: ${{ inputs.test_env }},
                   short: true
                 },
                 {
-                  title: 'reverse',
-                  value: 'gnirts esrever'.split('').reverse().join(''),
+                  title: 'Site URL',
+                  value: ${{ inputs.test_site }},
                   short: true
                 },
                 {
-                  title: 'long title1',
-                  value: 'long value1',
+                  title: 'Test branch',
+                  value: ${{ inputs.test_branch }},
+                  short: false
+                },
+                {
+                  title: 'Test type',
+                  value: ${{ inputs.test_type }},
+                  short: false
+                },
+                {
+                  title: 'Notify slack channels',
+                  value: ${{ inputs.notify_slack }},
                   short: false
                 }],
                 actions: [{
