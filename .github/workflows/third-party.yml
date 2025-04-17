@@ -5,6 +5,7 @@ on:
     - cron: '* 5 * * 1-5'
 jobs:
   check-playwright-version:
+    name: Check playwright version
     timeout-minutes: 60
     runs-on: ubuntu-latest
     env:
