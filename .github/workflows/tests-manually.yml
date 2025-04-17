@@ -141,3 +141,17 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,eventName,ref,workflow,job,took
+        with:
+          status: custom
+          custom_payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "<https://github.com/longnv1995/cicd-flow/actions/runs/14520016034|Test report>"
+                  }
+                }
+              ]
+            }
