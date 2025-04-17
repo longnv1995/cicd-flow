@@ -49,6 +49,7 @@ jobs:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - name: Run e2e test with parameters
+        uses: act10ns/slack@v2
         with:
           message: Run e2e test with parameters
           inputs: ${{ toJson(inputs) }}
