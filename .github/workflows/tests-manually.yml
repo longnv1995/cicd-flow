@@ -82,7 +82,7 @@ jobs:
                 },
                 {
                   title: 'Notify slack channels',
-                  value: ${{ inputs.notify_slack }},
+                  value: '${{ inputs.notify_slack }}',
                   short: false
                 }],
                 actions: [{
