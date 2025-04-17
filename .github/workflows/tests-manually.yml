@@ -48,43 +48,47 @@ jobs:
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
-      - uses: 8398a7/action-slack@v3
+      - name: Run e2e test with parameters
+        uses: 8398a7/action-slack@v3
         with:
           status: custom
           custom_payload: |
             {
-              text: "Run e2e test with parameters",
+              text: "Custom Field Check",
               attachments: [{
+                fallback: 'fallback',
+                color: 'good',
+                title: 'Run e2e test with parameters',
+                text: 'Succeeded',
                 fields: [{
-                  title: 'Test environment',
-                  value: ${{ inputs.test_env }}',
+                  title: 'Environment to run the tests',
+                  value: '${{ inputs.test_env }}',
                   short: true
                 },
                 {
                   title: 'Site URL',
-                  value: ${{ inputs.test_site }}',
+                  value: '${{ inputs.test_site }}',
                   short: true
                 },
                 {
                   title: 'Test branch',
-                  value: ${{ inputs.test_branch }}',
+                  value: '${{ inputs.test_branch }}',
                   short: false
                 },
                 {
                   title: 'Test type',
-                  value: ${{ inputs.test_type }}',
+                  value: '${{ inputs.test_type }}',
                   short: false
                 },
                 {
                   title: 'Notify slack channels',
-                  value: ${{ inputs.notify_slack }}',
+                  value: ${{ inputs.notify_slack }},
                   short: false
                 }],
                 actions: [{
                 }]
               }]
             }
-      - run: echo "${{ github.repository }}"
       - name: Checkout to branch ${{ inputs.test_branch }}
         uses: actions/checkout@v4
         with:
