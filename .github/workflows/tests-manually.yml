@@ -37,10 +37,6 @@ on:
         default: '#regression-tests-prodtest'
         required: true
         type: string
-      notify_users:
-        description: Notify slack users, eg userId1,userId2
-        required: false
-        type: string
 jobs:
   test:
     name: Run e2e tests
@@ -59,7 +55,7 @@ jobs:
             {
               text: "Running e2e test with parameters triggered by ${{ github.actor }}",
               attachments: [{
-                author: 'Github Action Bot',
+                "author_name": 'Github Action Bot',
                 color: 'good',
                 fields: [{
                   title: 'Test environment',
@@ -84,11 +80,6 @@ jobs:
                 {
                   title: 'Notify slack channels',
                   value: '${{ inputs.notify_slack }}',
-                  short: false
-                },
-                {
-                  title: 'Notify slack users',
-                  value: '${{ inputs.notify_users }}',
                   short: false
                 }],
                 actions: [{
@@ -134,7 +125,7 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest # selectable (default: repo,message)
+          fields: repo,eventName,ref,workflow,took # selectable (default: repo,message)
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
         if: always() # Pick up events even if the job fails or is canceled.
