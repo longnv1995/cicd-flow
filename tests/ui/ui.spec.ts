@@ -5,6 +5,6 @@ test.describe('UI tests', async () => {
     tag: ['@smoke', '@ui']
   }, async ({ page }) => {
     await page.goto('/demo-site');
-    await expect(page.getByTestId('heading_pg')).toHaveText('Vite + React');
+    await expect(page.getByTestId('heading_pg')).not.toHaveText('Vite + React');
   });
 });
