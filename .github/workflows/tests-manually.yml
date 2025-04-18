@@ -127,6 +127,10 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - name: Publish Test Report
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          report-path: './ctrf/*.json'
       - name: Notify slack
         uses: 8398a7/action-slack@v3
         with:
