@@ -120,7 +120,7 @@ jobs:
         run: ENV=${{ inputs.test_env }} TEST_TYPE=${{ inputs.test_type }} make test
   upload-artifact:
     needs: test
-    uses: ./.github/actions/upload-artifact.yml
+    uses: ./.github/workflows/upload-artifact.yml
   notify-slack:
     needs: test
     name: Notify slack
