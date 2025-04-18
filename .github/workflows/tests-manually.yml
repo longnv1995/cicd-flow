@@ -127,7 +127,9 @@ jobs:
           path: playwright-report/
           retention-days: 30
       - name: Publish Test Summary Results
-        run: npx github-actions-ctrf ctrf/ctrf-report.json
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          report-path: './playwright-report/*.json'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: always()
