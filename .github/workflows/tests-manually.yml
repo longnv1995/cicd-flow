@@ -43,6 +43,7 @@ on:
         type: string
 jobs:
   test:
+    name: Run e2e tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
     env:
@@ -129,29 +130,20 @@ jobs:
       - name: Publish Test Summary Results
         uses: ctrf-io/github-test-reporter@v1
         with:
-          report-path: './test-results/reports.json'
+          report-path: './tests/*.json'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: always()
+  notify-slack:
+    name: Notify slack
+    environment: Slackbot notification
+    timeout-minutes: 60
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
       - name: Notify Slack
         if: always()
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           fields: repo,eventName,ref,workflow,job,took
-      - name: Send test report link
-        uses: 8398a7/action-slack@v3
-        with:
-          status: custom
-          custom_payload: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "<https://github.com/longnv1995/cicd-flow/actions/runs/14520016034|Test report>"
-                  }
-                }
-              ]
-            }
