@@ -140,6 +140,8 @@ jobs:
     timeout-minutes: 60
     needs: test
     runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - name: Notify Slack
         if: always()
