@@ -130,6 +130,7 @@ jobs:
         uses: ctrf-io/github-test-reporter@v1
         with:
           report-path: './ctrf/*.json'
+          github-report: true
         if: always()
       - name: Notify Slack
         if: always()
