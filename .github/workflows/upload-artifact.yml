@@ -2,6 +2,7 @@ name: Upload artifact
 on: workflow_call
 jobs:
   upload-artifact:
+    name: Upload artifact
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -9,5 +10,5 @@ jobs:
         if: '${{ !cancelled() }}'
         with:
           name: playwright-report
-          path: playwright-report/
+          path: ./../playwright-report/
           retention-days: 30
