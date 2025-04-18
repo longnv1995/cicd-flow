@@ -120,13 +120,6 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
       - name: Run Playwright tests
         run: ENV=${{ inputs.test_env }} TEST_TYPE=${{ inputs.test_type }} make test
-  # upload-artifact:
-  #   needs: test
-  #   # uses: ./.github/workflows/upload-artifact.yml
-  #   name: Upload artifact
-  #   timeout-minutes: 60
-  #   runs-on: ubuntu-latest
-  #   steps:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         if: '${{ !cancelled() }}'
@@ -134,14 +127,6 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-  notify-slack:
-    needs: test
-    name: Notify slack
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-    steps:
       - name: Notify slack
         uses: 8398a7/action-slack@v3
         with:
