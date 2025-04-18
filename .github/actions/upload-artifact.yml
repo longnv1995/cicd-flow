@@ -2,6 +2,8 @@ name: Upload artifact
 on: workflow_call
 jobs:
   upload-artifact:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/upload-artifact@v4
         if: '${{ !cancelled() }}'
