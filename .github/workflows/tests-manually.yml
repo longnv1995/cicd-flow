@@ -122,7 +122,18 @@ jobs:
         run: ENV=${{ inputs.test_env }} TEST_TYPE=${{ inputs.test_type }} make test
   upload-artifact:
     needs: test
-    uses: ./.github/workflows/upload-artifact.yml
+    # uses: ./.github/workflows/upload-artifact.yml
+    name: Upload artifact
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        if: '${{ !cancelled() }}'
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
   notify-slack:
     needs: test
     name: Notify slack
