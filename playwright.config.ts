@@ -49,6 +49,10 @@ export default defineConfig({
     ['list'],
     ['json', { outputFile: './tests/reports.json' }],
     ['html'],
+    [
+      'playwright-ctrf-json-reporter',
+      { outputDir: './playwright-report', outputFile: "ctrf-test-report.json" }
+    ],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
