@@ -134,18 +134,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: always()
-  notify-slack:
-    name: Notify slack
-    environment: Slackbot notification
-    timeout-minutes: 60
-    needs: test
-    runs-on: ubuntu-latest
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-    steps:
-      - name: Notify Slack
-        if: always()
+      - name: Notify slack
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           fields: repo,eventName,ref,workflow,job,took
+        if: always()
