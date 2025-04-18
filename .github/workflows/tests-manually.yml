@@ -46,6 +46,8 @@ jobs:
     name: Run e2e tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - name: Trigger e2e test by ${{ github.actor }}
         uses: 8398a7/action-slack@v3
