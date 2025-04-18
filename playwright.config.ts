@@ -1,4 +1,3 @@
-import { GitHubActionOptions } from '@estruyf/github-actions-reporter';
 import { defineConfig, devices } from '@playwright/test';
 
 /**
