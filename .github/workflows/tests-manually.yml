@@ -121,7 +121,7 @@ jobs:
       - name: Run Playwright tests
         run: ENV=${{ inputs.test_env }} TEST_TYPE=${{ inputs.test_type }} make test
       - name: Upload artifact
-        uses: ./.github/actions/upload-artifact.yml
+        uses: ./.github/workflows/upload-artifact.yml
       - name: Notify slack
         uses: 8398a7/action-slack@v3
         with:
