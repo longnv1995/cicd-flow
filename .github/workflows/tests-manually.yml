@@ -129,7 +129,7 @@ jobs:
       - name: Publish Test Summary Results
         uses: ctrf-io/github-test-reporter@v1
         with:
-          report-path: './test-results/*.json'
+          report-path: './test-results/reports.json'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: always()
