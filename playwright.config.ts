@@ -33,16 +33,22 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 3 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  // reporter: process.env.CI ? [
+  //   [
+  //     '@estruyf/github-actions-reporter', <GitHubActionOptions>{
+  //       title: 'E2E test report',
+  //       useDetails: true,
+  //       showError: true
+  //     }
+  //   ]
+  // ] : [
+  //   // ['json', { outputFile: './test-results/reports.json' }],
+  //   ['list'],
+  //   ['html', { open: process.env.PLAYWRIGHT_HTML_OPEN }],
+  // ],
   reporter: [
     ['list'],
     ['html'],
-    [
-      '@estruyf/github-actions-reporter', <GitHubActionOptions>{
-        title: 'E2E test report',
-        useDetails: true,
-        showError: true
-      }
-    ]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

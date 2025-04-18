@@ -92,16 +92,7 @@ jobs:
                 }],
                 actions: [{
                 }]
-              }],
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "<https://github.com/longnv1995/cicd-flow/actions/runs/14520016034|Test report>"
-                  }
-                }
-              ]
+              }]
             }
       - name: Checkout to branch ${{ inputs.test_branch }}
         uses: actions/checkout@v4
