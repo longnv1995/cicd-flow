@@ -120,12 +120,7 @@ jobs:
         run: ENV=${{ inputs.test_env }} TEST_TYPE=${{ inputs.test_type }} make test
   upload-artifact:
     needs: test
-    name: Upload artifact
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    steps:
-      - name: Upload artifact
-        uses: ./.github/actions/upload-artifact.yml
+    uses: ./.github/actions/upload-artifact.yml
   notify-slack:
     needs: test
     name: Notify slack
