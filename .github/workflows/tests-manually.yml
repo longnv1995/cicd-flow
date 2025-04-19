@@ -44,7 +44,11 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       test_outcome: ${{ job.status }}
+      timestamp: ${{ steps.timestampid.outputs.timestamp }}
     steps:
+      - name: Set a timestamp
+        id: timestampid
+        run: echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_OUTPUT" 
       - name: Trigger e2e test by ${{ github.actor }}
         uses: 8398a7/action-slack@v3
         with:
@@ -117,9 +121,9 @@ jobs:
           name: HTML Test Report
           path: ./playwright-report
           retention-days: 30
-      # - name: Publish test summary results
-      #   run: npx github-actions-ctrf playwright-report/ctrf-test-report.json
-      #   if: always()
+      - name: Publish test summary results
+        run: npx github-actions-ctrf playwright-report/ctrf-test-report.json
+        if: always()
   notify:
     name: Slack Notification
     needs: test
@@ -144,12 +148,14 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: HTML Test Report
-          path: ./playwright-report
+          name: playwright-report-${{ steps.timestampid.outputs.timestamp }}
+          path: playwright-report
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./playwright-report
-          destination_dir: reports
+          publish_dir: playwright-report
+          destination_dir: ${{ steps.timestampid.outputs.timestamp }}
+      - name: Write URL in summary
+        run: echo "### Test results - https://${{ github.repository_owner }}.github.io/cicd-flow/${{ steps.timestampid.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY

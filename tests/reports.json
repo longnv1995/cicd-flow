@@ -1,0 +1,414 @@
+{
+  "config": {
+    "configFile": "/Users/longnguyen/Desktop/projects/cicd-flow/playwright.config.ts",
+    "rootDir": "/Users/longnguyen/Desktop/projects/cicd-flow/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./tests/reports.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "/Users/longnguyen/Desktop/projects/cicd-flow/node_modules/playwright-ctrf-json-reporter/dist/index.js",
+        {
+          "outputDir": "./playwright-report",
+          "outputFile": "ctrf-test-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/longnguyen/Desktop/projects/cicd-flow/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "api tests",
+        "name": "api tests",
+        "testDir": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/api",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/longnguyen/Desktop/projects/cicd-flow/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "visual tests",
+        "name": "visual tests",
+        "testDir": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/visual",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/longnguyen/Desktop/projects/cicd-flow/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "ui tests",
+        "name": "ui tests",
+        "testDir": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.51.1",
+    "workers": 6,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "api/api.spec.ts",
+      "file": "api/api.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API tests",
+          "file": "api/api.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "API test example",
+              "ok": false,
+              "tags": [
+                "api"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "api tests",
+                  "projectName": "api tests",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6375,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('count_btn')\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toContainText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('count_btn')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('count_btn')\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toContainText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('count_btn')\u001b[22m\n\n    at /Users/longnguyen/Desktop/projects/cicd-flow/tests/api/api.spec.ts:9:49",
+                        "matcherResult": {
+                          "name": "toContainText",
+                          "expected": "0",
+                          "message": "\u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('count_btn')\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toContainText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('count_btn')\u001b[22m\n",
+                          "pass": false,
+                          "actual": "<element(s) not found>",
+                          "log": [
+                            "  - expect.toContainText with timeout 5000ms",
+                            "  - waiting for getByTestId('count_btn')"
+                          ],
+                          "timeout": 5000
+                        },
+                        "location": {
+                          "file": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/api/api.spec.ts",
+                          "column": 49,
+                          "line": 9
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  7 |\u001b[39m     \u001b[90m// console.log(testInfo.project.name);\u001b[39m\n \u001b[90m  8 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/demo-site'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByTestId(\u001b[32m'count_btn'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m\"0\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 10 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 12 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/api/api.spec.ts",
+                            "column": 49,
+                            "line": 9
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('count_btn')\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toContainText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('count_btn')\u001b[22m\n\n\n\u001b[0m \u001b[90m  7 |\u001b[39m     \u001b[90m// console.log(testInfo.project.name);\u001b[39m\n \u001b[90m  8 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/demo-site'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByTestId(\u001b[32m'count_btn'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m\"0\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 10 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 12 |\u001b[39m\u001b[0m\n\u001b[2m    at /Users/longnguyen/Desktop/projects/cicd-flow/tests/api/api.spec.ts:9:49\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-04-19T14:46:44.719Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/longnguyen/Desktop/projects/cicd-flow/test-results/api-API-tests-API-test-example-api-tests/video.webm"
+                        },
+                        {
+                          "name": "_prompt-0",
+                          "contentType": "text/markdown",
+                          "body": "IyBJbnN0cnVjdGlvbnMKCi0gRm9sbG93aW5nIFBsYXl3cmlnaHQgdGVzdCBmYWlsZWQuCi0gRXhwbGFpbiB3aHksIGJlIGNvbmNpc2UsIHJlc3BlY3QgUGxheXdyaWdodCBiZXN0IHByYWN0aWNlcy4KLSBQcm92aWRlIGEgc25pcHBldCBvZiBjb2RlIHdpdGggdGhlIGZpeCwgaWYgcG9zc2libGUuCgojIFRlc3QgaW5mbwoKLSBOYW1lOiBBUEkgdGVzdHMgPj4gQVBJIHRlc3QgZXhhbXBsZQotIExvY2F0aW9uOiAvVXNlcnMvbG9uZ25ndXllbi9EZXNrdG9wL3Byb2plY3RzL2NpY2QtZmxvdy90ZXN0cy9hcGkvYXBpLnNwZWMudHM6NDo3CgojIEVycm9yIGRldGFpbHMKCmBgYApFcnJvcjogVGltZWQgb3V0IDUwMDBtcyB3YWl0aW5nIGZvciBleHBlY3QobG9jYXRvcikudG9Db250YWluVGV4dChleHBlY3RlZCkKCkxvY2F0b3I6IGdldEJ5VGVzdElkKCdjb3VudF9idG4nKQpFeHBlY3RlZCBzdHJpbmc6ICIwIgpSZWNlaXZlZDogPGVsZW1lbnQocykgbm90IGZvdW5kPgpDYWxsIGxvZzoKICAtIGV4cGVjdC50b0NvbnRhaW5UZXh0IHdpdGggdGltZW91dCA1MDAwbXMKICAtIHdhaXRpbmcgZm9yIGdldEJ5VGVzdElkKCdjb3VudF9idG4nKQoKICAgIGF0IC9Vc2Vycy9sb25nbmd1eWVuL0Rlc2t0b3AvcHJvamVjdHMvY2ljZC1mbG93L3Rlc3RzL2FwaS9hcGkuc3BlYy50czo5OjQ5CmBgYAoKIyBQYWdlIHNuYXBzaG90CgpgYGB5YW1sCi0gaGVhZGluZyAiNDA0IiBbbGV2ZWw9MV0KLSBwYXJhZ3JhcGg6CiAgLSBzdHJvbmc6IFRoZXJlIGlzbid0IGEgR2l0SHViIFBhZ2VzIHNpdGUgaGVyZS4KLSBwYXJhZ3JhcGg6CiAgLSB0ZXh0OiBJZiB5b3UncmUgdHJ5aW5nIHRvIHB1Ymxpc2ggb25lLAogIC0gbGluayAicmVhZCB0aGUgZnVsbCBkb2N1bWVudGF0aW9uIgogIC0gdGV4dDogdG8gbGVhcm4gaG93IHRvIHNldCB1cAogIC0gc3Ryb25nOiBHaXRIdWIgUGFnZXMKICAtIHRleHQ6IGZvciB5b3VyIHJlcG9zaXRvcnksIG9yZ2FuaXphdGlvbiwgb3IgdXNlciBhY2NvdW50LgotIGxpbmsgIkdpdEh1YiBTdGF0dXMiCi0gdGV4dDog4oCUCi0gbGluayAiQGdpdGh1YnN0YXR1cyIKLSBsaW5rCmBgYAoKIyBUZXN0IHNvdXJjZQoKYGBgdHMKICAgMSB8IGltcG9ydCB7IHRlc3QsIGV4cGVjdCB9IGZyb20gJ0BwbGF5d3JpZ2h0L3Rlc3QnOwogICAyIHwKICAgMyB8IHRlc3QuZGVzY3JpYmUoJ0FQSSB0ZXN0cycsIGFzeW5jICgpID0+IHsKICAgNCB8ICAgdGVzdCgnQVBJIHRlc3QgZXhhbXBsZScsIHsKICAgNSB8ICAgICB0YWc6IFsnQGFwaSddCiAgIDYgfCAgIH0sIGFzeW5jICh7IHBhZ2UgfSwgdGVzdEluZm8pID0+IHsKICAgNyB8ICAgICAvLyBjb25zb2xlLmxvZyh0ZXN0SW5mby5wcm9qZWN0Lm5hbWUpOwogICA4IHwgICAgIGF3YWl0IHBhZ2UuZ290bygnL2RlbW8tc2l0ZScpOwo+ICA5IHwgICAgIGF3YWl0IGV4cGVjdChwYWdlLmdldEJ5VGVzdElkKCdjb3VudF9idG4nKSkudG9Db250YWluVGV4dCgiMCIpOwogICAgIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXiBFcnJvcjogVGltZWQgb3V0IDUwMDBtcyB3YWl0aW5nIGZvciBleHBlY3QobG9jYXRvcikudG9Db250YWluVGV4dChleHBlY3RlZCkKICAxMCB8ICAgfSk7CiAgMTEgfCB9KTsKICAxMiB8CmBgYA=="
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/api/api.spec.ts",
+                        "column": 49,
+                        "line": 9
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1ea1b1599cbc08f16936-42ea26ca16857820032b",
+              "file": "api/api.spec.ts",
+              "line": 4,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "visual/visual.spec.ts",
+      "file": "visual/visual.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Visual tests",
+          "file": "visual/visual.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Visual test example",
+              "ok": false,
+              "tags": [
+                "smoke",
+                "visual"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "visual tests",
+                  "projectName": "visual tests",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 6383,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('count_btn')\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toContainText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('count_btn')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('count_btn')\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toContainText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('count_btn')\u001b[22m\n\n    at /Users/longnguyen/Desktop/projects/cicd-flow/tests/visual/visual.spec.ts:8:49",
+                        "matcherResult": {
+                          "name": "toContainText",
+                          "expected": "0",
+                          "message": "\u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('count_btn')\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toContainText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('count_btn')\u001b[22m\n",
+                          "pass": false,
+                          "actual": "<element(s) not found>",
+                          "log": [
+                            "  - expect.toContainText with timeout 5000ms",
+                            "  - waiting for getByTestId('count_btn')"
+                          ],
+                          "timeout": 5000
+                        },
+                        "location": {
+                          "file": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/visual/visual.spec.ts",
+                          "column": 49,
+                          "line": 8
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  6 |\u001b[39m   }\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m  7 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/demo-site'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  8 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByTestId(\u001b[32m'count_btn'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m\"0\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  9 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 10 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/visual/visual.spec.ts",
+                            "column": 49,
+                            "line": 8
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('count_btn')\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toContainText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('count_btn')\u001b[22m\n\n\n\u001b[0m \u001b[90m  6 |\u001b[39m   }\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m  7 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/demo-site'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  8 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByTestId(\u001b[32m'count_btn'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m\"0\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  9 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 10 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m\u001b[0m\n\u001b[2m    at /Users/longnguyen/Desktop/projects/cicd-flow/tests/visual/visual.spec.ts:8:49\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-04-19T14:46:44.719Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/longnguyen/Desktop/projects/cicd-flow/test-results/visual-Visual-tests-Visual-test-example-visual-tests/video.webm"
+                        },
+                        {
+                          "name": "_prompt-0",
+                          "contentType": "text/markdown",
+                          "body": "IyBJbnN0cnVjdGlvbnMKCi0gRm9sbG93aW5nIFBsYXl3cmlnaHQgdGVzdCBmYWlsZWQuCi0gRXhwbGFpbiB3aHksIGJlIGNvbmNpc2UsIHJlc3BlY3QgUGxheXdyaWdodCBiZXN0IHByYWN0aWNlcy4KLSBQcm92aWRlIGEgc25pcHBldCBvZiBjb2RlIHdpdGggdGhlIGZpeCwgaWYgcG9zc2libGUuCgojIFRlc3QgaW5mbwoKLSBOYW1lOiBWaXN1YWwgdGVzdHMgPj4gVmlzdWFsIHRlc3QgZXhhbXBsZQotIExvY2F0aW9uOiAvVXNlcnMvbG9uZ25ndXllbi9EZXNrdG9wL3Byb2plY3RzL2NpY2QtZmxvdy90ZXN0cy92aXN1YWwvdmlzdWFsLnNwZWMudHM6NDo3CgojIEVycm9yIGRldGFpbHMKCmBgYApFcnJvcjogVGltZWQgb3V0IDUwMDBtcyB3YWl0aW5nIGZvciBleHBlY3QobG9jYXRvcikudG9Db250YWluVGV4dChleHBlY3RlZCkKCkxvY2F0b3I6IGdldEJ5VGVzdElkKCdjb3VudF9idG4nKQpFeHBlY3RlZCBzdHJpbmc6ICIwIgpSZWNlaXZlZDogPGVsZW1lbnQocykgbm90IGZvdW5kPgpDYWxsIGxvZzoKICAtIGV4cGVjdC50b0NvbnRhaW5UZXh0IHdpdGggdGltZW91dCA1MDAwbXMKICAtIHdhaXRpbmcgZm9yIGdldEJ5VGVzdElkKCdjb3VudF9idG4nKQoKICAgIGF0IC9Vc2Vycy9sb25nbmd1eWVuL0Rlc2t0b3AvcHJvamVjdHMvY2ljZC1mbG93L3Rlc3RzL3Zpc3VhbC92aXN1YWwuc3BlYy50czo4OjQ5CmBgYAoKIyBQYWdlIHNuYXBzaG90CgpgYGB5YW1sCi0gaGVhZGluZyAiNDA0IiBbbGV2ZWw9MV0KLSBwYXJhZ3JhcGg6CiAgLSBzdHJvbmc6IFRoZXJlIGlzbid0IGEgR2l0SHViIFBhZ2VzIHNpdGUgaGVyZS4KLSBwYXJhZ3JhcGg6CiAgLSB0ZXh0OiBJZiB5b3UncmUgdHJ5aW5nIHRvIHB1Ymxpc2ggb25lLAogIC0gbGluayAicmVhZCB0aGUgZnVsbCBkb2N1bWVudGF0aW9uIgogIC0gdGV4dDogdG8gbGVhcm4gaG93IHRvIHNldCB1cAogIC0gc3Ryb25nOiBHaXRIdWIgUGFnZXMKICAtIHRleHQ6IGZvciB5b3VyIHJlcG9zaXRvcnksIG9yZ2FuaXphdGlvbiwgb3IgdXNlciBhY2NvdW50LgotIGxpbmsgIkdpdEh1YiBTdGF0dXMiCi0gdGV4dDog4oCUCi0gbGluayAiQGdpdGh1YnN0YXR1cyIKLSBsaW5rCmBgYAoKIyBUZXN0IHNvdXJjZQoKYGBgdHMKICAgMSB8IGltcG9ydCB7IHRlc3QsIGV4cGVjdCB9IGZyb20gJ0BwbGF5d3JpZ2h0L3Rlc3QnOwogICAyIHwKICAgMyB8IHRlc3QuZGVzY3JpYmUoJ1Zpc3VhbCB0ZXN0cycsIGFzeW5jICgpID0+IHsKICAgNCB8ICAgdGVzdCgnVmlzdWFsIHRlc3QgZXhhbXBsZScsIHsKICAgNSB8ICAgICB0YWc6IFsnQHNtb2tlJywgJ0B2aXN1YWwnXQogICA2IHwgICB9LCBhc3luYyAoeyBwYWdlIH0pID0+IHsKICAgNyB8ICAgICBhd2FpdCBwYWdlLmdvdG8oJy9kZW1vLXNpdGUnKTsKPiAgOCB8ICAgICBhd2FpdCBleHBlY3QocGFnZS5nZXRCeVRlc3RJZCgnY291bnRfYnRuJykpLnRvQ29udGFpblRleHQoIjAiKTsKICAgICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF4gRXJyb3I6IFRpbWVkIG91dCA1MDAwbXMgd2FpdGluZyBmb3IgZXhwZWN0KGxvY2F0b3IpLnRvQ29udGFpblRleHQoZXhwZWN0ZWQpCiAgIDkgfCAgIH0pOwogIDEwIHwgfSk7CiAgMTEgfApgYGA="
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/visual/visual.spec.ts",
+                        "column": 49,
+                        "line": 8
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "8324bb52c49185e48ff4-6398364849bf84fa4c8b",
+              "file": "visual/visual.spec.ts",
+              "line": 4,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui/ui.spec.ts",
+      "file": "ui/ui.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "UI tests",
+          "file": "ui/ui.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "UI test example",
+              "ok": false,
+              "tags": [
+                "smoke",
+                "ui"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "ui tests",
+                  "projectName": "ui tests",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 6398,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('heading_pg')\nExpected string: \u001b[32m\"Vite + React\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toHaveText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('heading_pg')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('heading_pg')\nExpected string: \u001b[32m\"Vite + React\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toHaveText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('heading_pg')\u001b[22m\n\n    at /Users/longnguyen/Desktop/projects/cicd-flow/tests/ui/ui.spec.ts:8:50",
+                        "matcherResult": {
+                          "name": "toHaveText",
+                          "expected": "Vite + React",
+                          "message": "\u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('heading_pg')\nExpected string: \u001b[32m\"Vite + React\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toHaveText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('heading_pg')\u001b[22m\n",
+                          "pass": false,
+                          "actual": "<element(s) not found>",
+                          "log": [
+                            "  - expect.toHaveText with timeout 5000ms",
+                            "  - waiting for getByTestId('heading_pg')"
+                          ],
+                          "timeout": 5000
+                        },
+                        "location": {
+                          "file": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/ui/ui.spec.ts",
+                          "column": 50,
+                          "line": 8
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  6 |\u001b[39m   }\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m  7 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/demo-site'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  8 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByTestId(\u001b[32m'heading_pg'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'Vite + React'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  9 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 10 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/ui/ui.spec.ts",
+                            "column": 50,
+                            "line": 8
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByTestId('heading_pg')\nExpected string: \u001b[32m\"Vite + React\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toHaveText with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('heading_pg')\u001b[22m\n\n\n\u001b[0m \u001b[90m  6 |\u001b[39m   }\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m  7 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/demo-site'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  8 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByTestId(\u001b[32m'heading_pg'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'Vite + React'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  9 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 10 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m\u001b[0m\n\u001b[2m    at /Users/longnguyen/Desktop/projects/cicd-flow/tests/ui/ui.spec.ts:8:50\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-04-19T14:46:44.719Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/longnguyen/Desktop/projects/cicd-flow/test-results/ui-UI-tests-UI-test-example-ui-tests/video.webm"
+                        },
+                        {
+                          "name": "_prompt-0",
+                          "contentType": "text/markdown",
+                          "body": "IyBJbnN0cnVjdGlvbnMKCi0gRm9sbG93aW5nIFBsYXl3cmlnaHQgdGVzdCBmYWlsZWQuCi0gRXhwbGFpbiB3aHksIGJlIGNvbmNpc2UsIHJlc3BlY3QgUGxheXdyaWdodCBiZXN0IHByYWN0aWNlcy4KLSBQcm92aWRlIGEgc25pcHBldCBvZiBjb2RlIHdpdGggdGhlIGZpeCwgaWYgcG9zc2libGUuCgojIFRlc3QgaW5mbwoKLSBOYW1lOiBVSSB0ZXN0cyA+PiBVSSB0ZXN0IGV4YW1wbGUKLSBMb2NhdGlvbjogL1VzZXJzL2xvbmduZ3V5ZW4vRGVza3RvcC9wcm9qZWN0cy9jaWNkLWZsb3cvdGVzdHMvdWkvdWkuc3BlYy50czo0OjcKCiMgRXJyb3IgZGV0YWlscwoKYGBgCkVycm9yOiBUaW1lZCBvdXQgNTAwMG1zIHdhaXRpbmcgZm9yIGV4cGVjdChsb2NhdG9yKS50b0hhdmVUZXh0KGV4cGVjdGVkKQoKTG9jYXRvcjogZ2V0QnlUZXN0SWQoJ2hlYWRpbmdfcGcnKQpFeHBlY3RlZCBzdHJpbmc6ICJWaXRlICsgUmVhY3QiClJlY2VpdmVkOiA8ZWxlbWVudChzKSBub3QgZm91bmQ+CkNhbGwgbG9nOgogIC0gZXhwZWN0LnRvSGF2ZVRleHQgd2l0aCB0aW1lb3V0IDUwMDBtcwogIC0gd2FpdGluZyBmb3IgZ2V0QnlUZXN0SWQoJ2hlYWRpbmdfcGcnKQoKICAgIGF0IC9Vc2Vycy9sb25nbmd1eWVuL0Rlc2t0b3AvcHJvamVjdHMvY2ljZC1mbG93L3Rlc3RzL3VpL3VpLnNwZWMudHM6ODo1MApgYGAKCiMgUGFnZSBzbmFwc2hvdAoKYGBgeWFtbAotIGhlYWRpbmcgIjQwNCIgW2xldmVsPTFdCi0gcGFyYWdyYXBoOgogIC0gc3Ryb25nOiBUaGVyZSBpc24ndCBhIEdpdEh1YiBQYWdlcyBzaXRlIGhlcmUuCi0gcGFyYWdyYXBoOgogIC0gdGV4dDogSWYgeW91J3JlIHRyeWluZyB0byBwdWJsaXNoIG9uZSwKICAtIGxpbmsgInJlYWQgdGhlIGZ1bGwgZG9jdW1lbnRhdGlvbiIKICAtIHRleHQ6IHRvIGxlYXJuIGhvdyB0byBzZXQgdXAKICAtIHN0cm9uZzogR2l0SHViIFBhZ2VzCiAgLSB0ZXh0OiBmb3IgeW91ciByZXBvc2l0b3J5LCBvcmdhbml6YXRpb24sIG9yIHVzZXIgYWNjb3VudC4KLSBsaW5rICJHaXRIdWIgU3RhdHVzIgotIHRleHQ6IOKAlAotIGxpbmsgIkBnaXRodWJzdGF0dXMiCi0gbGluawpgYGAKCiMgVGVzdCBzb3VyY2UKCmBgYHRzCiAgIDEgfCBpbXBvcnQgeyB0ZXN0LCBleHBlY3QgfSBmcm9tICdAcGxheXdyaWdodC90ZXN0JzsKICAgMiB8CiAgIDMgfCB0ZXN0LmRlc2NyaWJlKCdVSSB0ZXN0cycsIGFzeW5jICgpID0+IHsKICAgNCB8ICAgdGVzdCgnVUkgdGVzdCBleGFtcGxlJywgewogICA1IHwgICAgIHRhZzogWydAc21va2UnLCAnQHVpJ10KICAgNiB8ICAgfSwgYXN5bmMgKHsgcGFnZSB9KSA9PiB7CiAgIDcgfCAgICAgYXdhaXQgcGFnZS5nb3RvKCcvZGVtby1zaXRlJyk7Cj4gIDggfCAgICAgYXdhaXQgZXhwZWN0KHBhZ2UuZ2V0QnlUZXN0SWQoJ2hlYWRpbmdfcGcnKSkudG9IYXZlVGV4dCgnVml0ZSArIFJlYWN0Jyk7CiAgICAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXiBFcnJvcjogVGltZWQgb3V0IDUwMDBtcyB3YWl0aW5nIGZvciBleHBlY3QobG9jYXRvcikudG9IYXZlVGV4dChleHBlY3RlZCkKICAgOSB8ICAgfSk7CiAgMTAgfCB9KTsKICAxMSB8CmBgYA=="
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/longnguyen/Desktop/projects/cicd-flow/tests/ui/ui.spec.ts",
+                        "column": 50,
+                        "line": 8
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d425444c687fa36b5882-d43d79551a6cc20f804d",
+              "file": "ui/ui.spec.ts",
+              "line": 4,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-04-19T14:46:44.446Z",
+    "duration": 9083.336000000001,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}
