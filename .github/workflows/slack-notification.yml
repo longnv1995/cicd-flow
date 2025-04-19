@@ -31,8 +31,7 @@ on:
         type: string
         default: 'E2E Tests Result'
         description: 'Notification title'
-      secrets:
-        SLACK_WEBHOOK_URL:
+      slack_webhook_url:
           required: true
           type: string
           description: 'Slack webhook URL'
@@ -74,7 +73,7 @@ jobs:
               ]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook_url }}
 
       - name: Send Slack notification on failure
         if: needs.test.outputs.test_outcome != 'success'
@@ -108,4 +107,4 @@ jobs:
               ]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook_url }}
