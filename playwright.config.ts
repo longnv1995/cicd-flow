@@ -48,7 +48,7 @@ export default defineConfig({
   reporter: [
     ['list'],
     ['json', { outputFile: './tests/reports.json' }],
-    ['html'],
+    ['html', { outputFolder: 'playwright-report' }],
     [
       'playwright-ctrf-json-reporter',
       { outputDir: './playwright-report', outputFile: "ctrf-test-report.json" }
