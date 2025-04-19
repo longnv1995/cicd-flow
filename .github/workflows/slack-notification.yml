@@ -1,0 +1,110 @@
+name: Slack Notification
+on:
+  workflow_call:
+    inputs:
+      job_status:
+        required: true
+        type: string
+        description: 'Job status that triggered this notification'
+      repository:
+        required: true
+        type: string
+        description: 'Repository name'
+      branch:
+        required: true
+        type: string
+        description: 'Branch name'
+      commit:
+        required: true
+        type: string
+        description: 'Commit SHA'
+      actor:
+        required: true
+        type: string
+        description: 'Github actor who triggered the workflow'
+      run_id:
+        required: true
+        type: string
+        description: 'Workflow run ID'
+      notification_title:
+        required: false
+        type: string
+        default: 'E2E Tests Result'
+        description: 'Notification title'
+      secrets:
+        SLACK_WEBHOOK_URL:
+          required: true
+          description: 'Slack webhook URL'
+
+jobs:
+  send_notification:
+    name: Send Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send slack notification on success
+        if: needs.test.outputs.test_outcome == 'success'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          custom_payload: |
+            {
+              "text": "✅ ${{ inputs.notification_title }} PASSED!",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "✅ *${{ inputs.notification_title }} PASSED*\n\nRepository: ${{ inputs.repository }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
+                  }
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View workflow"
+                      },
+                      "url": "https://inputs.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Send Slack notification on failure
+        if: needs.test.outputs.test_outcome != 'success'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          custom_payload: |
+            {
+              "text": "❌ ${{ inputs.notification_title }} FAILED",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "❌ *${{ inputs.notification_title }} FAILED*\n\nRepository: ${{ inputs.repository }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
+                  }
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View workflow"
+                      },
+                      "url": "https://inputs.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
