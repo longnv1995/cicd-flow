@@ -42,6 +42,8 @@ jobs:
     name: Run e2e tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    outputs:
+      test_outcome: ${{ job.status }}
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
@@ -120,11 +122,73 @@ jobs:
       - name: Publish test summary results
         run: npx github-actions-ctrf playwright-report/ctrf-test-report.json
         if: always()
-      - name: Notify slack
+  notify:
+    name: Send Slack Notification
+    needs: test
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Send slack notification on success
+        if: needs.test.outputs.test_outcome == 'success'
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
-          fields: repo,eventName,ref,workflow,took # selectable (default: repo,message)
+          payload: |
+            {
+              "text": "✅ E2E tests passed successfully!",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "✅ E2E tests passed successfully!*\n\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nCommit: ${{ github.event.after || github.event.pull_request.head.sha }}\nTriggered by: ${{ github.actor }}"
+                  }
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View workflow"
+                      },
+                      "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-        if: always() # Pick up events even if the job fails or is canceled.
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Send Slack notification on failure
+        if: needs.test.outputs.test_outcome != 'success'
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload: |
+            {
+              "text": "❌ E2E tests failed!",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "❌ E2E tests failed!*\n\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nCommit: ${{ github.event.after || github.event.pull_request.head.sha }}\nTriggered by: ${{ github.actor }}"
+                  }
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View workflow"
+                      },
+                      "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
