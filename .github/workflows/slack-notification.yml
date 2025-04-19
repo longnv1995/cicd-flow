@@ -29,8 +29,11 @@ on:
       notification_title:
         required: false
         type: string
-        default: 'E2E Tests Result'
+        default: 'E2E Tests'
         description: 'Notification title'
+    secrets:
+      slack_webhook_url:
+        required: true
 
 jobs:
   send_notification:
@@ -38,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send slack notification on success
-        if: needs.test.outputs.test_outcome == 'success'
+        if: inputs.job_status == 'success'
         uses: 8398a7/action-slack@v3
         with:
           status: custom
@@ -62,17 +65,16 @@ jobs:
                         "type": "plain_text",
                         "text": "View workflow"
                       },
-                      "url": "https://inputs.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
+                      "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
                     }
                   ]
                 }
               ]
             }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: ${{ inputs.slack_webhook_url }}
 
       - name: Send Slack notification on failure
-        if: needs.test.outputs.test_outcome != 'success'
+        if: inputs.job_status != 'success'
         uses: 8398a7/action-slack@v3
         with:
           status: custom
@@ -96,11 +98,10 @@ jobs:
                         "type": "plain_text",
                         "text": "View workflow"
                       },
-                      "url": "https://inputs.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
+                      "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
                     }
                   ]
                 }
               ]
             }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: ${{ inputs.slack_webhook_url }}

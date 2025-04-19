@@ -132,4 +132,5 @@ jobs:
       commit: ${{ github.event.after || github.event.pull_request.head.sha }}
       actor: ${{ github.actor }}
       run_id: ${{ github.run_id }}
-    secrets: inherit
+    secrets:
+      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
