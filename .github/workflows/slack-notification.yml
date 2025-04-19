@@ -47,7 +47,7 @@ jobs:
           status: custom
           custom_payload: |
             {
-              "text": "✅ ${{ inputs.notification_title }} PASSED!",
+              "text": "✅ ${{ inputs.notification_title }} PASSED! :tada:",
               "blocks": [
                 {
                   "type": "section",
@@ -81,7 +81,7 @@ jobs:
           status: custom
           custom_payload: |
             {
-              "text": "❌ ${{ inputs.notification_title }} FAILED",
+              "text": "❌ ${{ inputs.notification_title }} FAILED :cry:",
               "blocks": [
                 {
                   "type": "section",
