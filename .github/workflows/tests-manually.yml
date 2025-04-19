@@ -112,19 +112,35 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
       - name: Run Playwright tests
         run: ENV=${{ inputs.test_env }} TEST_TYPE=${{ inputs.test_type }} make test
-      - name: Upload HTML test report
+      - name: Save test results temporarily
+        if: always()
         uses: actions/upload-artifact@v4
-        if: '${{ !cancelled() }}'
         with:
-          name: HTML Test Report
+          name: playwright-report-temp
+          path: playwright-report/
+          retention-days: 1
+  upload_results:
+    name: Upload Test Results
+    needs: test  # This job will run after the test job
+    runs-on: ubuntu-latest
+    if: always()  # Run even if the test job fails
+
+    steps:
+      - name: Download test results
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-report-temp
+          path: playwright-report
+
+      - name: Archive and upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
           path: playwright-report/
           retention-days: 30
-      - name: Publish test summary results
-        run: npx github-actions-ctrf playwright-report/ctrf-test-report.json
-        if: always()
   notify:
     name: Send Slack Notification
-    needs: test
+    needs: [test, upload_results]
     runs-on: ubuntu-latest
     if: always()
     steps:
@@ -142,7 +158,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "✅ E2E tests passed successfully!*\n\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nCommit: ${{ github.event.after || github.event.pull_request.head.sha }}\nTriggered by: ${{ github.actor }}"
+                    "text": "✅ *E2E tests passed successfully!*\n\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nCommit: ${{ github.event.after || github.event.pull_request.head.sha }}\nTriggered by: ${{ github.actor }}"
                   }
                 },
                 {
@@ -176,7 +192,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "❌ E2E tests failed!*\n\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nCommit: ${{ github.event.after || github.event.pull_request.head.sha }}\nTriggered by: ${{ github.actor }}"
+                    "text": "❌ *E2E tests failed!*\n\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nCommit: ${{ github.event.after || github.event.pull_request.head.sha }}\nTriggered by: ${{ github.actor }}"
                   }
                 },
                 {
