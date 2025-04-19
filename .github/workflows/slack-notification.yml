@@ -6,7 +6,11 @@ on:
         required: true
         type: string
         description: 'Job status that triggered this notification'
-      repository:
+      owner:
+        required: true
+        type: string
+        description: 'Owner name'
+      repository_name:
         required: true
         type: string
         description: 'Repository name'
@@ -53,7 +57,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "✅ *${{ inputs.notification_title }} PASSED*\n\nRepository: ${{ inputs.repository }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
+                    "text": "✅ *${{ inputs.notification_title }} PASSED*\n\nRepository: ${{ inputs.owner }}/${{ inputs.repository_name }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
                   }
                 },
                 {
@@ -68,6 +72,14 @@ jobs:
                       "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
                     }
                   ]
+                },
+                {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "View test report"
+                  },
+                  "url": "https://${{ inputs.owner }}.github.io/${{ inputs.repository_name }}/reports-${{ inputs.run_id }}"
                 }
               ]
             }
@@ -87,7 +99,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "❌ *${{ inputs.notification_title }} FAILED*\n\nRepository: ${{ inputs.repository }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
+                    "text": "❌ *${{ inputs.notification_title }} FAILED*\n\nRepository: ${{ inputs.owner }}/${{ inputs.repository_name }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
                   }
                 },
                 {
@@ -97,9 +109,17 @@ jobs:
                       "type": "button",
                       "text": {
                         "type": "plain_text",
-                        "text": "View test report"
+                        "text": "View job details"
                       },
                       "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
+                    },
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View test report"
+                      },
+                      "url": "https://${{ inputs.owner }}.github.io/${{ inputs.repository_name }}/reports-${{ inputs.run_id }}"
                     }
                   ]
                 }
