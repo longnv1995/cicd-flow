@@ -114,8 +114,8 @@ jobs:
         uses: actions/upload-artifact@v4
         if: '${{ !cancelled() }}'
         with:
-          name: HTML Test Report
-          path: ./playwright-report
+          name: playwright-report-${{ github.run_id }}
+          path: playwright-report
           retention-days: 30
       - name: Publish test summary results
         run: npx github-actions-ctrf playwright-report/ctrf-test-report.json
