@@ -128,7 +128,7 @@ jobs:
     with:
       job_status: ${{ needs.test.outputs.test_outcome }}
       repository_owner: ${{ github.repository_owner }}
-      repository_name: ${{ github.repository_name }}
+      repository: ${{ github.repository }}
       branch: ${{ github.ref_name }}
       commit: ${{ github.event.after || github.event.pull_request.head.sha }}
       actor: ${{ github.actor }}

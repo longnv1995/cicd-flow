@@ -10,7 +10,7 @@ on:
         required: true
         type: string
         description: 'Repository owner name'
-      repository_name:
+      repository:
         required: true
         type: string
         description: 'Repository name'
@@ -57,54 +57,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "✅ *${{ inputs.notification_title }} PASSED*\n\nRepository: ${{ inputs.repository_owner }}/${{ inputs.repository_name }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
-                  }
-                },
-                {
-                  "type": "actions",
-                  "elements": [
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "View details"
-                      },
-                      "url": "https://github.com/${{ inputs.repository_owner }}/${{ inputs.repository_name }}/actions/runs/${{ inputs.run_id }}"
-                    }
-                  ]
-                },
-                {
-                  "type": "actions",
-                  "elements": [
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "View test report"
-                      },
-                      "url": "https://${{ inputs.repository_owner }}.github.io/${{ inputs.repository_name }}/reports-${{ inputs.run_id }}"
-                    }
-                  ]
-                }
-              ]
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
-
-      - name: Send Slack notification on failure
-        if: inputs.job_status != 'success'
-        uses: 8398a7/action-slack@v3
-        with:
-          status: custom
-          custom_payload: |
-            {
-              "text": "❌ ${{ inputs.notification_title }} FAILED :cry:",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "❌ *${{ inputs.notification_title }} FAILED*\n\nRepository: ${{ inputs.repository_owner }}/${{ inputs.repository_name }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
+                    "text": "✅ *${{ inputs.notification_title }} PASSED*\nRepository: ${{ inputs.repository }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
                   }
                 },
                 {
@@ -129,7 +82,54 @@ jobs:
                         "type": "plain_text",
                         "text": "View test report"
                       },
-                      "url": "https://${{ inputs.repository_owner }}.github.io/${{ inputs.repository_name }}/reports-${{ inputs.run_id }}"
+                      "url": "https://${{ inputs.repository_owner }}.github.io/cicd-flow/reports-${{ inputs.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
+
+      - name: Send Slack notification on failure
+        if: inputs.job_status != 'success'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          custom_payload: |
+            {
+              "text": "❌ ${{ inputs.notification_title }} FAILED :cry:",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "❌ *${{ inputs.notification_title }} FAILED*\nRepository: ${{ inputs.repository }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
+                  }
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View details"
+                      },
+                      "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View test report"
+                      },
+                      "url": "https://${{ inputs.repository_owner }}.github.io/cicd-flow/reports-${{ inputs.run_id }}"
                     }
                   ]
                 }
