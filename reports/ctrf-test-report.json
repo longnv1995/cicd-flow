@@ -1,0 +1,83 @@
+{
+  "results": {
+    "tool": {
+      "name": "playwright"
+    },
+    "summary": {
+      "tests": 3,
+      "passed": 3,
+      "failed": 0,
+      "pending": 0,
+      "skipped": 0,
+      "other": 0,
+      "start": 1745071227439,
+      "stop": 1745071233855,
+      "suites": 0
+    },
+    "tests": [
+      {
+        "name": "API test example",
+        "status": "passed",
+        "duration": 1085,
+        "start": 1745071228,
+        "stop": 1745071229,
+        "rawStatus": "passed",
+        "tags": [],
+        "type": "e2e",
+        "filePath": "/home/runner/work/cicd-flow/cicd-flow/tests/api/api.spec.ts",
+        "retries": 0,
+        "flaky": false,
+        "steps": [],
+        "suite": "api tests > api/api.spec.ts > API tests",
+        "attachments": [],
+        "stdout": [],
+        "stderr": [],
+        "extra": {
+          "annotations": []
+        }
+      },
+      {
+        "name": "Visual test example",
+        "status": "passed",
+        "duration": 1074,
+        "start": 1745071228,
+        "stop": 1745071229,
+        "rawStatus": "passed",
+        "tags": [],
+        "type": "e2e",
+        "filePath": "/home/runner/work/cicd-flow/cicd-flow/tests/visual/visual.spec.ts",
+        "retries": 0,
+        "flaky": false,
+        "steps": [],
+        "suite": "visual tests > visual/visual.spec.ts > Visual tests",
+        "attachments": [],
+        "stdout": [],
+        "stderr": [],
+        "extra": {
+          "annotations": []
+        }
+      },
+      {
+        "name": "UI test example",
+        "status": "passed",
+        "duration": 1024,
+        "start": 1745071228,
+        "stop": 1745071229,
+        "rawStatus": "passed",
+        "tags": [],
+        "type": "e2e",
+        "filePath": "/home/runner/work/cicd-flow/cicd-flow/tests/ui/ui.spec.ts",
+        "retries": 0,
+        "flaky": false,
+        "steps": [],
+        "suite": "ui tests > ui/ui.spec.ts > UI tests",
+        "attachments": [],
+        "stdout": [],
+        "stderr": [],
+        "extra": {
+          "annotations": []
+        }
+      }
+    ]
+  }
+}
