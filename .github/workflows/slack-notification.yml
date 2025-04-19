@@ -6,10 +6,10 @@ on:
         required: true
         type: string
         description: 'Job status that triggered this notification'
-      owner:
+      repository_owner:
         required: true
         type: string
-        description: 'Owner name'
+        description: 'Repository owner name'
       repository_name:
         required: true
         type: string
@@ -57,8 +57,21 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "✅ *${{ inputs.notification_title }} PASSED*\n\nRepository: ${{ inputs.owner }}/${{ inputs.repository_name }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
+                    "text": "✅ *${{ inputs.notification_title }} PASSED*\n\nRepository: ${{ inputs.repository_owner }}/${{ inputs.repository_name }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
                   }
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View details"
+                      },
+                      "url": "https://github.com/${{ inputs.repository_owner }}/${{ inputs.repository_name }}/actions/runs/${{ inputs.run_id }}"
+                    }
+                  ]
                 },
                 {
                   "type": "actions",
@@ -69,17 +82,9 @@ jobs:
                         "type": "plain_text",
                         "text": "View test report"
                       },
-                      "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
+                      "url": "https://${{ inputs.repository_owner }}.github.io/${{ inputs.repository_name }}/reports-${{ inputs.run_id }}"
                     }
                   ]
-                },
-                {
-                  "type": "button",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "View test report"
-                  },
-                  "url": "https://${{ inputs.owner }}.github.io/${{ inputs.repository_name }}/reports-${{ inputs.run_id }}"
                 }
               ]
             }
@@ -99,7 +104,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "❌ *${{ inputs.notification_title }} FAILED*\n\nRepository: ${{ inputs.owner }}/${{ inputs.repository_name }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
+                    "text": "❌ *${{ inputs.notification_title }} FAILED*\n\nRepository: ${{ inputs.repository_owner }}/${{ inputs.repository_name }}\nBranch: ${{ inputs.branch }}\nCommit: ${{ inputs.commit }}\nTriggered by: ${{ inputs.actor }}"
                   }
                 },
                 {
@@ -109,17 +114,22 @@ jobs:
                       "type": "button",
                       "text": {
                         "type": "plain_text",
-                        "text": "View job details"
+                        "text": "View details"
                       },
                       "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
                     {
                       "type": "button",
                       "text": {
                         "type": "plain_text",
                         "text": "View test report"
                       },
-                      "url": "https://${{ inputs.owner }}.github.io/${{ inputs.repository_name }}/reports-${{ inputs.run_id }}"
+                      "url": "https://${{ inputs.repository_owner }}.github.io/${{ inputs.repository_name }}/reports-${{ inputs.run_id }}"
                     }
                   ]
                 }

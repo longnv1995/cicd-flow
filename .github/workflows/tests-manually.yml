@@ -127,7 +127,7 @@ jobs:
     uses: ./.github/workflows/slack-notification.yml
     with:
       job_status: ${{ needs.test.outputs.test_outcome }}
-      owner: ${{ github.owner }}
+      repository_owner: ${{ github.repository_owner }}
       repository_name: ${{ github.repository_name }}
       branch: ${{ github.ref_name }}
       commit: ${{ github.event.after || github.event.pull_request.head.sha }}
