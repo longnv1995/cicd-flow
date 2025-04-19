@@ -53,7 +53,7 @@ jobs:
           fields: all
           mention: '${{ inputs.notify_users }}'
           status: custom
-          custom_custom_payload: |
+          custom_payload: |
             {
               text: "Running e2e test with parameters triggered by ${{ github.actor }}",
               attachments: [{
