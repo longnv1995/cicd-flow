@@ -154,4 +154,4 @@ jobs:
           publish_dir: playwright-report
           destination_dir: reports-${{ github.run_id }}
       - name: Write URL in summary
-        run: echo "View HTML test report at https://${{ github.repository_owner }}.github.io/cicd-flow/${{ github.run_id }}/" >> $GITHUB_STEP_SUMMARY
+        run: echo "View HTML test report at https://${{ github.repository_owner }}.github.io/cicd-flow/reports-${{ github.run_id }}/" >> $GITHUB_STEP_SUMMARY
