@@ -134,3 +134,23 @@ jobs:
       run_id: ${{ github.run_id }}
     secrets:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  upload_report:
+    name: Upload report to Github pages
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: HTML Test Report
+          path: playwright-report/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: playwright-report/

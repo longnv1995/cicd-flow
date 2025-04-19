@@ -63,7 +63,7 @@ jobs:
                       "type": "button",
                       "text": {
                         "type": "plain_text",
-                        "text": "View workflow"
+                        "text": "View test report"
                       },
                       "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
                     }
@@ -97,7 +97,7 @@ jobs:
                       "type": "button",
                       "text": {
                         "type": "plain_text",
-                        "text": "View workflow"
+                        "text": "View test report"
                       },
                       "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
                     }
