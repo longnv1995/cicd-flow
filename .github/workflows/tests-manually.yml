@@ -53,7 +53,7 @@ jobs:
           fields: all
           mention: '${{ inputs.notify_users }}'
           status: custom
-          custom_payload: |
+          custom_custom_payload: |
             {
               text: "Running e2e test with parameters triggered by ${{ github.actor }}",
               attachments: [{
@@ -132,7 +132,9 @@ jobs:
         if: needs.test.outputs.test_outcome == 'success'
         uses: 8398a7/action-slack@v3
         with:
-          payload: |
+          status: custom
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          custom_payload: |
             {
               "text": "✅ E2E tests passed successfully!",
               "blocks": [
@@ -162,9 +164,11 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Send Slack notification on failure
         if: needs.test.outputs.test_outcome != 'success'
-        uses: slackapi/slack-github-action@v1.23.0
+        uses: 8398a7/action-slack@v3
         with:
-          payload: |
+          status: custom
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          custom_payload: |
             {
               "text": "❌ E2E tests failed!",
               "blocks": [
