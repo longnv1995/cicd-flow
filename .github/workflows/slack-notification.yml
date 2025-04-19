@@ -71,7 +71,8 @@ jobs:
                 }
               ]
             }
-          slack_webhook_url: ${{ secrets.slack_webhook_url }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
 
       - name: Send Slack notification on failure
         if: inputs.job_status != 'success'
@@ -104,4 +105,5 @@ jobs:
                 }
               ]
             }
-          slack_webhook_url: ${{ secrets.slack_webhook_url }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
