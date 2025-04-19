@@ -117,6 +117,9 @@ jobs:
           name: HTML Test Report
           path: playwright-report/
           retention-days: 30
+      - name: Publish test summary results
+        run: npx github-actions-ctrf playwright-report/ctrf-test-report.json
+        if: always()
   notify:
     name: Slack Notification
     needs: test

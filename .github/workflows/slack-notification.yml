@@ -107,7 +107,3 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
-      - name: View summary report
-        uses: 8398a7/action-slack@v3
-        run: npx github-actions-ctrf playwright-report/ctrf-test-report.json
-        if: always()
