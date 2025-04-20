@@ -67,7 +67,7 @@ jobs:
                       "type": "button",
                       "text": {
                         "type": "plain_text",
-                        "text": "View details"
+                        "text": "View job details"
                       },
                       "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
                     }
@@ -114,7 +114,7 @@ jobs:
                       "type": "button",
                       "text": {
                         "type": "plain_text",
-                        "text": "View details"
+                        "text": "View job details"
                       },
                       "url": "https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}"
                     }

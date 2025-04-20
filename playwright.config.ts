@@ -49,6 +49,7 @@ export default defineConfig({
     ['list'],
     ['json', { outputFile: './tests/reports.json' }],
     ['html', { outputFolder: 'playwright-report' }],
+    ['junit', { outputFile: 'test-results/junit-report.xml' }],
     [
       'playwright-ctrf-json-reporter',
       { outputDir: './playwright-report', outputFile: "ctrf-test-report.json" }
